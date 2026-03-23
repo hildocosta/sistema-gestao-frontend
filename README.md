@@ -29,43 +29,55 @@ Construído com **Next.js 15** e **React 19**, o sistema entrega uma experiênci
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="33.33%" valign="top" style="padding: 10px;">
+    <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
         <p align="center">
           <img src="https://img.shields.io/badge/🔐-Login-blue?style=flat&logoColor=white" alt="Login Icon" />
         </p>
         <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Validando credenciais de forma segura.
+          Autenticação segura para militares do 17º BPM.
         </p>
         <img src="./screenshots/login.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Login" />
       </div>
     </td>
-    <td width="33.33%" valign="top" style="padding: 10px;">
-      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/📝-Cadastro-emerald?style=flat&logoColor=white" alt="Register Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Fluxo de registro de novos operadores.
-        </p>
-        <img src="./screenshots/cadastrar.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Cadastro" />
-      </div>
-    </td>
-    <td width="33.33%" valign="top" style="padding: 10px;">
+    <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
         <p align="center">
           <img src="https://img.shields.io/badge/📊-Dashboard-orange?style=flat&logoColor=white" alt="Dashboard Icon" />
         </p>
         <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Visão geral com gráficos e indicadores.
+          Visão geral com indicadores de manutenção e efetivo.
         </p>
         <img src="./screenshots/dashboard.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Dashboard Geral" />
       </div>
     </td>
   </tr>
-</table>
 
----
+  <tr>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/👤-Novo_Usuário-emerald?style=flat&logoColor=white" alt="User Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Fluxo de registro de militares e níveis de acesso.
+        </p>
+        <img src="./screenshots/cadastrar_usuario.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Cadastro de Usuário" />
+      </div>
+    </td>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/⚙️-Novo_Serviço-amber?style=flat&logoColor=white" alt="Service Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Gestão de manutenções preventivas e periódicas.
+        </p>
+        <img src="./screenshots/cadastrar_servico.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Cadastro de Serviço" />
+      </div>
+    </td>
+  </tr>
+</table>
 
 ## 🏗️ Estratégia de Desenvolvimento (MVP)
 
@@ -82,16 +94,16 @@ O projeto adota uma metodologia **Frontend-First**, priorizando a validação da
 ### ✅ Já Implementado
 - **Módulo de Acesso:** Telas de Login e Cadastro com validação de formulários.
 - **Navegação Inteligente:** Menu lateral dinâmico com reconhecimento de página ativa.
-- **Design System:** Padronização de componentes via Tailwind CSS.
+- **Design System v2:** Padronização de componentes via Tailwind CSS (v4) com suporte a gradientes lineares.
+- **Gestão de Usuários & Serviços:** Interface unificada para cadastro de efetivo e itens de manutenção.
+- **UX Polida:** Feedback visual de sucesso (Toasts), transições de entrada e cursor interativo em toda a aplicação.
 - **Gestão de Sessão:** Fluxo de saída (Logout) com transições suaves.
 
 ### 📈 Roadmap (Próximas Etapas)
-1.  **📊 Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real.
-2.  **🔧 Central de Serviços:** Gerenciamento de solicitações e chamados técnicos.
-3.  **👥 Gestão de Equipe:** Controle de perfis de usuários e níveis de permissão.
-4.  **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel.
-
----
+1.  **📊 Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real (Dashboard).
+2.  **🔧 Central de Serviços:** Tabela dinâmica para gerenciamento de solicitações e prazos de manutenção.
+3.  **👥 Níveis de Permissão:** Lógica de controle de acesso baseada no perfil do usuário (Operador/Gestor/Adm).
+4.  **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel para o 17º BPM.
 
 ## 🛠️ Stack Tecnológica
 
