@@ -46,7 +46,7 @@ Construído com **Next.js 15** e **React 19**, o sistema entrega uma experiênci
           <img src="https://img.shields.io/badge/📊-Dashboard-orange?style=flat&logoColor=white" alt="Dashboard Icon" />
         </p>
         <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Visão geral com indicadores de manutenção e efetivo.
+          Visão geral com indicadores de manutenção.
         </p>
         <img src="./screenshots/dashboard.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Dashboard Geral" />
       </div>
@@ -77,6 +77,31 @@ Construído com **Next.js 15** e **React 19**, o sistema entrega uma experiênci
       </div>
     </td>
   </tr>
+
+  <tr>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/📋-Painel_de_Controle-darkblue?style=flat&logoColor=white" alt="Control Panel Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Visualização consolidada de todas as manutenções e filtros.
+        </p>
+        <img src="./screenshots/servicos.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Controle de Serviços" />
+      </div>
+    </td>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/🛠️-Interface_de_Cadastro-blueviolet?style=flat&logoColor=white" alt="Modal Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Janela flutuante (Modal) para inserção rápida de novos itens.
+        </p>
+        <img src="./screenshots/modal_cadastrar_servico.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Modal Cadastrar Serviço" />
+      </div>
+    </td>
+  </tr>
 </table>
 
 ## 🏗️ Estratégia de Desenvolvimento (MVP)
@@ -92,19 +117,19 @@ O projeto adota uma metodologia **Frontend-First**, priorizando a validação da
 ## 🚀 Status do Desenvolvimento
 
 ### ✅ Já Implementado
-- **Módulo de Acesso:** Telas de Login e Cadastro com validação de formulários.
-- **Navegação Inteligente:** Menu lateral dinâmico com reconhecimento de página ativa.
-- **Design System v2:** Padronização de componentes via Tailwind CSS (v4) com suporte a gradientes lineares.
-- **Gestão de Usuários & Serviços:** Interface unificada para cadastro de efetivo e itens de manutenção.
-- **UX Polida:** Feedback visual de sucesso (Toasts), transições de entrada e cursor interativo em toda a aplicação.
-- **Gestão de Sessão:** Fluxo de saída (Logout) com transições suaves.
+* **Módulo de Acesso:** Telas de Login e Cadastro com validação de formulários.
+* **Navegação Inteligente:** Menu lateral dinâmico com reconhecimento de página ativa.
+* **Design System v2:** Padronização de componentes via Tailwind CSS (v4) com suporte a gradientes lineares.
+* **Gestão de Usuários & Serviços:** Interface unificada para cadastro de efetivo e itens de manutenção.
+* **Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real (Dashboard).
+* **Central de Serviços:** Tabela dinâmica para gerenciamento de solicitações e prazos de manutenção.
+* **UX Polida:** Feedback visual de sucesso (Toasts), transições de entrada e cursor interativo em toda a aplicação.
+* **Gestão de Sessão:** Fluxo de saída (Logout) com transições suaves.
 
 ### 📈 Roadmap (Próximas Etapas)
-1.  **📊 Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real (Dashboard).
-2.  **🔧 Central de Serviços:** Tabela dinâmica para gerenciamento de solicitações e prazos de manutenção.
-3.  **👥 Níveis de Permissão:** Lógica de controle de acesso baseada no perfil do usuário (Operador/Gestor/Adm).
-4.  **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel para o 17º BPM.
-
+1. **👥 Níveis de Permissão:** Lógica de controle de acesso baseada no perfil do usuário (Operador/Gestor/Adm).
+2. **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel para o 17º BPM.
+3. **🔗 Conexão de Banco de Dados:** Implementação da persistência real dos dados de manutenção.
 ## 🛠️ Stack Tecnológica
 
 | Ferramenta | Aplicação |
