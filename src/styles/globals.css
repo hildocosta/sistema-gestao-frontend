@@ -64,17 +64,20 @@
          hover:bg-white/10;
 }
 
-/* CORREÇÃO AQUI: Removido !important de dentro do @apply */
+
 .sidebar-item-active {
   @apply bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] 
          text-white shadow-md shadow-blue-500/20;
 }
 
+
+
 .sidebar-footer-btn {
-  @apply mx-4 mb-6 py-3 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] 
+  @apply py-3 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] 
          text-white text-xs font-bold uppercase rounded-lg
          shadow-lg shadow-blue-500/40 text-center
          hover:scale-[1.02] transition-transform;
+  
 }
 
 /* FOCO DOS INPUTS */

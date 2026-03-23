@@ -63,7 +63,7 @@ export default function Sidebar() {
 
           return (
             <Link key={item.path} href={item.path}>
-              <div className={`sidebar-item flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-all ${isActive ? "sidebar-item-active bg-white/10 text-white" : "text-white/70 hover:bg-white/5"}`}>
+              <div className={`sidebar-item flex items-center gap-3 px-4 py-3 mx-4 my-1 rounded-lg transition-all ${isActive ? "sidebar-item-active text-white" : "text-white/70 hover:bg-white/5"}`}>
                 <Icon size={20} className={isActive ? "text-white" : "text-white/70"} />
                 <span className="text-[13px] font-light">{item.name}</span>
               </div>
@@ -73,12 +73,12 @@ export default function Sidebar() {
       </nav>
 
       {/* Botão de Logout */}
-      <div className="mt-auto px-4 mb-8">
+      <div className="w-full px-4 mb-8">
         <button 
           onClick={handleLogout}
           disabled={isLoggingOut}
-          className={`sidebar-footer-btn w-full py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-2
-            ${isLoggingOut ? "opacity-70 bg-slate-600 cursor-not-allowed" : "hover:scale-[1.02] bg-red-500/10 hover:bg-red-500/20 text-red-400"}`}
+          className={`sidebar-footer-btn w-full py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 m-0
+            ${isLoggingOut ? "opacity-70 bg-slate-600 cursor-not-allowed" : "hover:scale-[1.02] bg-linear-to-tr from-blue-600 to-blue-400 text-white shadow-lg shadow-blue-500/30"}`}
         >
           {isLoggingOut ? (
             <>
@@ -88,7 +88,7 @@ export default function Sidebar() {
           ) : (
             <>
               <LogOut size={16} />
-              <span>Sair</span>
+              <span className="font-bold uppercase text-xs tracking-widest">Sair</span>
             </>
           )}
         </button>
