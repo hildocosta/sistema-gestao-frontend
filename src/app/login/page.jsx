@@ -24,85 +24,59 @@ export default function LoginPage() {
       if (loginUser(email, password)) {
         router.push("/dashboard");
       } else {
-        setError("E-mail ou senha inválidos.");
+        setError("E-MAIL OU SENHA INVÁLIDOS.");
         setIsLoading(false);
       }
     }, 800);
   };
 
   return (
-    <main className="min-h-screen bg-login-image flex flex-col items-center justify-center p-4 font-sans">
-    
-      <div className="relative w-full max-w-sm mt-20">
-        
-        {/* Header do Card com o Logo */}
-        <header className="card-header-floating">
-          <Image 
-            src="/assets/image/bg-profile.png" 
-            alt="Sistema Gestão Interna Logo"
-            width={80}
-            height={80}
-            className="logo-style"
-            priority 
-          />
-        </header>
-
-        <div className="bg-white rounded-xl shadow-2xl p-8 pt-32">
+    <main className="h-screen w-full bg-login-image flex flex-col items-center justify-between font-sans overflow-hidden">
+      
+      {/* Ajustado: pt-20 para desgrudar do topo e items-start para controle manual */}
+      <div className="flex-1 flex items-start justify-center w-full p-4 pt-20">
+        <div className="relative w-full max-w-sm">
           
-          {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-2 mb-6 animate-shake">
-              <p className="text-red-700 text-xs text-center font-bold">{error}</p>
-            </div>
-          )}
+          <header className="card-header-floating">
+            <Image 
+              src="/assets/image/bg-profile.png" 
+              alt="Logo" 
+              width={80} 
+              height={80} 
+              className="logo-style" 
+              priority 
+            />
+          </header>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <Input 
-              label="E-mail" 
-              type="email" 
-              placeholder="Digite seu e-mail..."
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required
-            />
-            
-            <Input 
-              label="Senha" 
-              type="password" 
-              placeholder="Digite sua senha..."
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required
-            />
-            
-            <div className="flex items-center gap-2 py-2">
-              <input 
-                type="checkbox" 
-                id="remember" 
-                className="w-4 h-4 rounded border-gray-300 accent-blue-600 cursor-pointer transition-all" 
-              />
-              <label htmlFor="remember" className="text-sm text-slate-500 font-medium cursor-pointer select-none hover:text-slate-700">
-                Lembrar-me
-              </label>
+          <div className="bg-white rounded-xl shadow-2xl p-8 pt-24 pb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-xl font-bold text-slate-700">Acessar Sistema</h2>
+              <p className="text-xs text-slate-500">Entre com seu e-mail e senha</p>
             </div>
-
-            <Button 
-              text={isLoading ? "Autenticando..." : "Entrar"} 
-              type="submit" 
-              disabled={isLoading}
-            />
             
-            <footer className="text-center text-sm text-slate-500 pt-4">
-              Não tem uma conta?{" "}
-              <Link href="/register" className="text-blue-500 font-bold cursor-pointer hover:underline decoration-2">
-                Cadastre-se
-              </Link>
-            </footer>
-          </form>
+            {error && (
+              <div className="bg-red-50 border-l-4 border-red-500 p-2 mb-6 animate-shake">
+                <p className="text-red-700 text-[10px] text-center font-bold uppercase">{error}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleLogin} className="space-y-6">
+              <Input label="E-MAIL" type="email" placeholder="Digite seu e-mail..." value={email} onChange={(e) => setEmail(e.target.value)} required />
+              <Input label="SENHA" type="password" placeholder="Digite sua senha..." value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+              <div className="pt-2">
+                <Button text={isLoading ? "AUTENTICANDO..." : "ENTRAR"} type="submit" disabled={isLoading} />
+              </div>
+              
+              <footer className="text-center text-sm text-slate-500 pt-4">
+                Não tem uma conta? <Link href="/register" className="text-blue-500 font-bold hover:underline decoration-2">Cadastre-se</Link>
+              </footer>
+            </form>
+          </div>
         </div>
       </div>
 
-      {/* Rodapé da Página */}
-      <footer className="absolute bottom-0 w-full">
+      <footer className="w-full">
         <Footer />
       </footer>
     </main>
