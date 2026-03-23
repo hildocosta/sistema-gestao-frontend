@@ -13,13 +13,32 @@
 
 ---
 
-## 📖 Sobre o Projeto
+## 📖 Sobre o Projeto: De Planilhas para Performance Digital
 
-O **Sistema de Gestão Interna - 17º BPM** é uma solução digital desenvolvida para centralizar e modernizar processos de gestão. O objetivo principal é converter fluxos de trabalho manuais em uma plataforma digital de alta performance, garantindo a organização de dados, agilidade na consulta de informações e uma interface intuitiva para o usuário final.
+O **Sistema de Gestão Interna - 17º BPM** nasceu de uma necessidade clara: modernizar e centralizar o controle de processos que, até então, dependiam de fluxos manuais e planilhas descentralizadas. O objetivo principal é converter a complexidade operacional em uma plataforma digital de alta performance, garantindo organização de dados, agilidade na consulta de informações e uma interface intuitiva para o militar.
 
 Construído com **Next.js 15** e **React 19**, o sistema entrega uma experiência veloz, segura e preparada para escala.
 
 ---
+
+### 🔄 A Grande Transformação: O Foco na Central de Serviços
+
+O maior desafio e foco inicial do projeto foi a **Central de Serviços e Manutenções**. Anteriormente gerida através de uma planilha no Google Sheets (veja abaixo), a gestão sofria com a falta de alertas visuais, dificuldade na busca e risco de dados inconsistentes.
+
+#### **O "Antes": Gestão Baseada em Google Sheets**
+<p align="center">
+  <img src="./screenshots/tabela controle de servicos - planilha.png" width="90%" style="border-radius: 8px; border: 1px solid #eaecef;" alt="Planilha Google Sheets Anterior" />
+  <br>
+  <em>A planilha original: dados descentralizados, sem automação e com visualização complexa.</em>
+</p>
+
+#### **O "Depois": O Novo Sistema Digital**
+Nossa solução transformou essa planilha em um **Painel de Controle Inteligente** (visível na seção "Visual Preview"), onde as mesmas informações agora possuem:
+
+* **Indicadores Visuais (KPIs):** Contagem instantânea de serviços 'Atrasados', 'Em Alerta' e 'Em Dia'.
+* **Busca e Filtros Dinâmicos:** Encontre qualquer manutenção ou item em segundos.
+* **Lógica de Cálculo Automático:** O sistema prevê a próxima data de execução baseada na periodicidade e última execução.
+* **UX Otimizada:** Modais de cadastro rápido e interface limpa para focar no que importa.
 
 ## 📸 Demonstração da Interface (Visual Preview)
 
