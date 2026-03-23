@@ -6,13 +6,14 @@ import Image from "next/image";
 import { 
   LayoutGrid, 
   ClipboardList, 
-  Wrench,         
-  Users,          
-  BarChart3,      
+  Wrench,          
+  Users,           
+  BarChart3,       
   User, 
   UserPlus,
   LogOut,
-  Loader2 
+  Loader2,
+  ChevronRight // Importada a setinha
 } from "lucide-react";
 
 const menuItems = [
@@ -63,9 +64,16 @@ export default function Sidebar() {
 
           return (
             <Link key={item.path} href={item.path}>
-              <div className={`sidebar-item flex items-center gap-3 px-4 py-3 mx-4 my-1 rounded-lg transition-all ${isActive ? "sidebar-item-active text-white" : "text-white/70 hover:bg-white/5"}`}>
-                <Icon size={20} className={isActive ? "text-white" : "text-white/70"} />
-                <span className="text-[13px] font-light">{item.name}</span>
+              <div className={`sidebar-item flex items-center justify-between px-4 py-3 mx-4 my-1 rounded-lg transition-all ${isActive ? "sidebar-item-active text-white" : "text-white/70 hover:bg-white/5"}`}>
+                <div className="flex items-center gap-3">
+                  <Icon size={20} className={isActive ? "text-white" : "text-white/70"} />
+                  <span className="text-[13px] font-light">{item.name}</span>
+                </div>
+                
+                {/* Setinha que aparece apenas no item ativo */}
+                {isActive && (
+                  <ChevronRight size={16} className="text-white/50 animate-in fade-in slide-in-from-left-1" />
+                )}
               </div>
             </Link>
           );
