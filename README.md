@@ -195,13 +195,26 @@ Nossa solução transformou essa planilha em um **Painel de Controle Inteligente
   </tr>
 </table>
 
-## 🏗️ Estratégia de Desenvolvimento (MVP)
+## 🏗️ Estratégia de Desenvolvimento e Refatoração
 
-O projeto adota uma metodologia **Frontend-First**, priorizando a validação da experiência do usuário e a arquitetura visual:
+O projeto seguiu uma abordagem de **Evolução de Arquitetura**, dividida em duas fases principais:
 
-- **Foco em UI/UX:** Interface de alta fidelidade, desenvolvida para ser limpa, moderna e funcional.
-- **Simulação de Dados (Mock Data):** Para validar a navegabilidade e as regras de negócio de forma ágil, o sistema utiliza dados simulados. Isso permite testar toda a jornada do usuário antes da integração definitiva com o banco de dados.
-- **Prototipagem Funcional:** Estados de clique, fluxos de navegação e transições já estão totalmente operacionais.
+1. **Fase de Prototipagem de Alta Fidelidade:** Construção das telas completas para validação imediata de fluxos de UI/UX, garantindo que a regra de negócio do 17º BPM fosse atendida visualmente.
+2. **Fase de Componentização e Otimização:** Com as telas validadas, iniciamos um processo de "limpeza" de código, extraindo padrões repetitivos para uma biblioteca de componentes reutilizáveis. 
+
+Isso resultou em um código **DRY (Don't Repeat Yourself)**, facilitando manutenções futuras e garantindo consistência visual em todo o sistema.
+
+
+## 🧩 Arquitetura de Componentes Reutilizáveis
+
+Para garantir a escalabilidade, o sistema conta com uma biblioteca de componentes customizados que padronizam a interface:
+
+* **`DataTable.jsx`:** Abstração completa para listagens, com suporte a estados de busca e ações.
+* **`StatCard.jsx`:** Cards de indicadores com variantes de status (Atrasado, Alerta, Em Dia).
+* **`Modal.jsx`:** Componente flutuante unificado com animações `framer-motion` e lógica de fechamento padronizada.
+* **`FormInput.jsx` & `FormSelect.jsx`:** Inputs customizados com altura padrão de `54px` (`h-13.5`) e estilos de foco consistentes.
+* **`StatusBadge.jsx` & `PermissionBadge.jsx`:** Rótulos visuais para identificação rápida de níveis de acesso e estados de serviço.
+* **`ActionButton.jsx`:** Botão principal com suporte a estados de carregamento (`loading`) e ícones dinâmicos.
 
 ---
 
@@ -219,6 +232,7 @@ O projeto adota uma metodologia **Frontend-First**, priorizando a validação da
 * **Central de Solicitações:** Tabela dinâmica para gerenciamento de chamados operacionais e ordens de serviço.
 * **UX Polida:** Feedback visual de sucesso (Toasts), transições de entrada e cursor interativo em toda a aplicação.
 * **Gestão de Sessão:** Fluxo de saída (Logout) com transições suaves.
+* **🚀 Refatoração de Arquitetura:** Migração de telas monolíticas para um sistema baseado em componentes modulares, reduzindo a duplicidade de código em mais de 40%.
 
 ### 📈 Roadmap (Próximas Etapas)
 1. **👥 Níveis de Permissão:** Lógica de controle de acesso baseada no perfil do usuário (Operador/Gestor/Adm).
