@@ -145,6 +145,30 @@ Nossa solução transformou essa planilha em um **Painel de Controle Inteligente
       </div>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/👥-Lista_de_Usuários-indigo?style=flat&logoColor=white" alt="Users List Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Visualização do efetivo cadastrado com indicadores de status e nível.
+        </p>
+        <img src="./screenshots/tela_usuario_total.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Listagem de Usuários" />
+      </div>
+    </td>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/👤-Novo_Militar-dodgerblue?style=flat&logoColor=white" alt="New User Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Interface modal para cadastro rápido de militares e definição de privilégios.
+        </p>
+        <img src="./screenshots/tela_modal_novo_usuario_tela_usuarios.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Modal de Cadastro de Usuário" />
+      </div>
+    </td>
+  </tr>
 </table>
 
 ## 🏗️ Estratégia de Desenvolvimento (MVP)
@@ -164,6 +188,7 @@ O projeto adota uma metodologia **Frontend-First**, priorizando a validação da
 * **Navegação Inteligente:** Menu lateral dinâmico com reconhecimento de página ativa.
 * **Design System v2:** Padronização de componentes via Tailwind CSS (v4) com suporte a gradientes lineares.
 * **Gestão de Usuários & Serviços:** Interface unificada para cadastro de efetivo e itens de manutenção.
+* **Gestão de Efetivo e Acessos:** Painel administrativo para controle de militares cadastrados, níveis de privilégio e status operacional.
 * **Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real (Dashboard).
 * **Central de Serviços:** Tabela dinâmica para gerenciamento de solicitações e prazos de manutenção.
 * **Central de Solicitações:** Tabela dinâmica para gerenciamento de chamados operacionais e ordens de serviço.
