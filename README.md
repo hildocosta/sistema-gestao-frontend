@@ -169,6 +169,30 @@ Nossa solução transformou essa planilha em um **Painel de Controle Inteligente
       </div>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/📈-Central_de_Relatórios-blueviolet?style=flat&logoColor=white" alt="Reports Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Painel de relatórios com filtros de exportação de dados para PDF e Excel.
+        </p>
+        <img src="./screenshots/tela_relatorios.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Relatórios" />
+      </div>
+    </td>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center">
+          <img src="https://img.shields.io/badge/📄-Impressão_PDF-red?style=flat&logoColor=white" alt="PDF Icon" />
+        </p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
+          Visualização de documento timbrado pronto para impressão oficial e arquivamento PDF.
+        </p>
+        <img src="./screenshots/tela relatorio exportar pdf.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Visualização de Impressão PDF" />
+      </div>
+    </td>
+  </tr>
 </table>
 
 ## 🏗️ Estratégia de Desenvolvimento (MVP)
@@ -191,15 +215,16 @@ O projeto adota uma metodologia **Frontend-First**, priorizando a validação da
 * **Gestão de Efetivo e Acessos:** Painel administrativo para controle de militares cadastrados, níveis de privilégio e status operacional.
 * **Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real (Dashboard).
 * **Central de Serviços:** Tabela dinâmica para gerenciamento de solicitações e prazos de manutenção.
+* **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel para o 17º BPM.
 * **Central de Solicitações:** Tabela dinâmica para gerenciamento de chamados operacionais e ordens de serviço.
 * **UX Polida:** Feedback visual de sucesso (Toasts), transições de entrada e cursor interativo em toda a aplicação.
 * **Gestão de Sessão:** Fluxo de saída (Logout) com transições suaves.
 
 ### 📈 Roadmap (Próximas Etapas)
 1. **👥 Níveis de Permissão:** Lógica de controle de acesso baseada no perfil do usuário (Operador/Gestor/Adm).
-2. **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel para o 17º BPM.
-3. **🔗 Conexão de Banco de Dados:** Implementação da persistência real dos dados de manutenção.
-## 🛠️ Stack Tecnológica
+2. **🔗 Conexão de Banco de Dados:** Implementação da persistência real dos dados de manutenção.
+
+## 🛠️ Stack Tecnológic
 
 | Ferramenta | Aplicação |
 | :--- | :--- |
