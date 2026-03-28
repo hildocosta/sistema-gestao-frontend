@@ -177,6 +177,17 @@ Antes do sistema, a gestão era realizada através de planilhas, o que dificulta
 * **Gestão Operacional:** Dashboard com indicadores, controle de efetivo e chamados.
 * **Exportação Profissional:** Gerador de relatórios timbrados em PDF e planilhas Excel.
 
+  ## ⚡ Performance e Experiência do Usuário (UX)
+
+### 🦴 Esqueleto de Carregamento (Skeleton Loaders)
+Para eliminar o efeito de "clutter" visual e reduzir a ansiedade do usuário durante o carregamento de dados assíncronos, foram implementados componentes de **Skeleton Screen**.
+
+* **Skeleton Genérico:** Altamente adaptável para simular a volumetria de *StatCards*, gráficos e campos de formulários.
+* **TableSkeleton:** Mantém a estrutura de colunas e linhas das tabelas (`DataTable`) enquanto os dados são processados, evitando saltos bruscos de layout (**CLS - Cumulative Layout Shift**).
+* **Integração Sistêmica:** Aplicado de forma nativa em todas as rotas críticas: `Dashboard`, `Serviços`, `Solicitações`, `Usuários` e `Relatórios`.
+
+---
+
 ### 📈 Roadmap
 1. **🔗 Persistência:** Integração com banco de dados real (PostgreSQL/MongoDB).
 2. **🔔 Notificações:** Alertas via sistema e e-mail para prazos de manutenção vencidos.
