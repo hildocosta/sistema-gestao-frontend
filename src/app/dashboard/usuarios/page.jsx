@@ -3,8 +3,8 @@ import { useState } from "react";
 import { 
   UserPlus, Search, ShieldCheck, ShieldAlert, 
   Mail, Trash2, Edit, Filter, X, Shield,
-  ChevronRight 
-} from "lucide-react";
+  } from "lucide-react";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const usuariosIniciais = [
   { id: 1, nome: "Anderson Silva", posto: "1º Sargento", re: "123.456-7", email: "sargento.silva@pm.pr.gov.br", nivel: "Admin", status: "Ativo" },
@@ -31,15 +31,10 @@ export default function UsuariosPage() {
   return (
     <div className="animate-in fade-in duration-700 space-y-6">
       
-      {/* --- CABEÇALHO (COM BREADCRUMB OPÇÃO 1) --- */}
+      {/* --- CABEÇALHO  --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <nav className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-full mb-3 shadow-sm shadow-slate-200/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em]">Dashboard</span>
-            <ChevronRight size={10} className="text-slate-300 mx-0.5" />
-            <span className="text-[9px] text-blue-600 font-black uppercase tracking-[0.15em]">Usuários</span>
-          </nav>
+          <Breadcrumb itemAtual="Usuários" />
           <h1 className="text-xl font-bold text-slate-800 tracking-tight">
             Gestão de Efetivo e Acessos
           </h1>

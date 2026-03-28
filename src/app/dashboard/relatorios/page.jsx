@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-import { FileText, Download, Printer, ChevronRight } from "lucide-react";
+import { FileText, Download, Printer } from "lucide-react";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 export default function RelatoriosPage() {
   
@@ -63,15 +64,10 @@ export default function RelatoriosPage() {
   return (
     <div className="animate-in fade-in duration-700 space-y-8 print:p-0 print:m-0">
       
-      {/* --- BOTÕES DE AÇÃO (COM BREADCRUMB OPÇÃO 1) --- */}
+      {/* --- CABEÇALHO --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 print:hidden">
         <div>
-          <nav className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-full mb-3 shadow-sm shadow-slate-200/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em]">Dashboard</span>
-            <ChevronRight size={10} className="text-slate-300 mx-0.5" />
-            <span className="text-[9px] text-blue-600 font-black uppercase tracking-[0.15em]">Relatórios</span>
-          </nav>
+          <Breadcrumb itemAtual="Relatórios" />
           <h1 className="text-xl font-bold text-slate-800 tracking-tight">
             Central de Relatórios
           </h1>

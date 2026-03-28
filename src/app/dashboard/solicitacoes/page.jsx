@@ -14,6 +14,7 @@ import {
   AlertCircle,
   ChevronRight
 } from "lucide-react";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const solicitacoesBaseadasNaPlanilha = [
   { 
@@ -67,15 +68,10 @@ export default function SolicitacoesPage() {
   return (
     <div className="animate-in fade-in duration-700 space-y-6">
       
-      {/* --- CABEÇALHO --- */}
+{/* --- CABEÇALHO --- */}
 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
   <div>
-    <nav className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-full mb-3 shadow-sm shadow-slate-200/10">
-      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-      <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em]">Gestão Interna</span>
-      <ChevronRight size={10} className="text-slate-300 mx-0.5" />
-      <span className="text-[9px] text-blue-600 font-black uppercase tracking-[0.15em]">Solicitações</span>
-    </nav>
+    <Breadcrumb itemAtual="Solicitações" />
     <h1 className="text-xl font-bold text-slate-800 tracking-tight">
       Chamados e Ordens de Serviço
      

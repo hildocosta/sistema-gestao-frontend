@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { 
   User, Mail, Shield, MapPin, Camera, Save, Lock, 
-  Award, CheckCircle2, Loader2, X, UserPlus, Hash,
-  ChevronRight 
+  Award, CheckCircle2, Loader2, X, UserPlus, Hash
 } from "lucide-react";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 export default function PerfilPage() {
   // Estado para os dados do militar logado
@@ -33,13 +33,13 @@ export default function PerfilPage() {
     setTimeout(() => {
       setIsSaving(false);
       setShowSuccess(true);
-      setShowModalMilitar(false); // Fecha o modal se estiver aberto
+      setShowModalMilitar(false);
       setTimeout(() => setShowSuccess(false), 3000);
     }, 1500);
   };
 
   return (
-    <div className="animate-in fade-in duration-700 space-y-6 relative">
+    <div className="animate-in fade-in duration-700 space-y-6 relative text-left">
       
       {/* --- NOTIFICAÇÃO DE SUCESSO --- */}
       {showSuccess && (
@@ -50,7 +50,7 @@ export default function PerfilPage() {
 
       {/* --- MODAL FLUTUANTE: CADASTRAR NOVO MILITAR --- */}
       {showModalMilitar && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
           <div 
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300" 
             onClick={() => setShowModalMilitar(false)}
@@ -73,10 +73,10 @@ export default function PerfilPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSave} className="p-8 space-y-6">
+            <form onSubmit={handleSave} className="p-8 space-y-6 text-left">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-1.5 md:col-span-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 text-left block">Nome Completo</label>
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Nome Completo</label>
                   <input required type="text" placeholder="Nome de Guerra ou Completo" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-bold text-slate-700"/>
                 </div>
 
@@ -86,8 +86,8 @@ export default function PerfilPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block text-left">Posto/Graduação</label>
-                  <select className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-bold text-slate-700">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Posto/Graduação</label>
+                  <select className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-bold text-slate-700 cursor-pointer">
                     <option>Soldado</option>
                     <option>Cabo</option>
                     <option>3º Sargento</option>
@@ -100,7 +100,7 @@ export default function PerfilPage() {
 
                 <div className="space-y-1.5 md:col-span-2">
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 flex items-center gap-1"><Mail size={10}/> E-mail Institucional</label>
-                  <input required type="email" placeholder="militar@pm.pr.gov.br" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 outline-none transition-all"/>
+                  <input required type="email" placeholder="militar@pm.pr.gov.br" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-600"/>
                 </div>
               </div>
 
@@ -114,7 +114,7 @@ export default function PerfilPage() {
                 </button>
                 <button 
                   type="submit" 
-                  className="flex items-center gap-2 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] text-white px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-500/20 hover:scale-102 active:scale-95 transition cursor-pointer">
+                  className="flex items-center gap-2 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] text-white px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-500/20 hover:scale-[1.02] active:scale-95 transition cursor-pointer">
                   {isSaving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
                   Confirmar Cadastro
                 </button>
@@ -124,15 +124,10 @@ export default function PerfilPage() {
         </div>
       )}
 
-      {/* --- CABEÇALHO DA PÁGINA (COM BREADCRUMB OPÇÃO 1) --- */}
+      {/* --- CABEÇALHO --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <nav className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-full mb-3 shadow-sm shadow-slate-200/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em]">Dashboard</span>
-            <ChevronRight size={10} className="text-slate-300 mx-0.5" />
-            <span className="text-[9px] text-blue-600 font-black uppercase tracking-[0.15em]">Meu Perfil</span>
-          </nav>
+          <Breadcrumb itemAtual="Meu Perfil" />
           <h1 className="text-xl font-bold text-slate-800 tracking-tight">Configurações de Conta</h1>
         </div>
 
@@ -146,6 +141,8 @@ export default function PerfilPage() {
 
       {/* --- CONTEÚDO PRINCIPAL --- */}
       <div className="flex flex-col lg:flex-row gap-8">
+        
+        {/* Card Lateral: Foto e Unidade */}
         <div className="w-full lg:w-1/3 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden flex flex-col min-h-105">
           <div className="h-28 bg-linear-to-r from-slate-800 to-slate-900 relative">
             <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
@@ -162,19 +159,20 @@ export default function PerfilPage() {
 
           <div className="pt-16 pb-8 px-6 text-center grow flex flex-col justify-center">
             <h2 className="text-lg font-bold text-slate-800">{user.posto} {user.nome}</h2>
-            <p className="text-xs font-black text-blue-600 uppercase tracking-widest mt-1 italic text-center">RE {user.re}</p>
+            <p className="text-xs font-black text-blue-600 uppercase tracking-widest mt-1 italic">RE {user.re}</p>
             
             <div className="mt-8 space-y-3">
               <div className="flex items-center gap-3 text-slate-500 text-[11px] font-bold bg-slate-50 p-3 rounded-xl border border-slate-100 italic">
-                <MapPin size={16} className="text-blue-500" /> {user.unidade}
+                <MapPin size={16} className="text-blue-500 shrink-0" /> {user.unidade}
               </div>
               <div className="flex items-center gap-3 text-slate-500 text-[11px] font-bold bg-slate-50 p-3 rounded-xl border border-slate-100 italic">
-                <Shield size={16} className="text-blue-500" /> {user.setor}
+                <Shield size={16} className="text-blue-500 shrink-0" /> {user.setor}
               </div>
             </div>
           </div>
         </div>
 
+        {/* Lado Direito: Formulário e Segurança */}
         <div className="w-full lg:w-2/3 flex flex-col gap-6">
           <form onSubmit={handleSave} className="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 grow">
             <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest mb-8 flex items-center gap-2">
@@ -183,22 +181,22 @@ export default function PerfilPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block text-left">Nome Completo</label>
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Nome Completo</label>
                 <input name="nome" type="text" value={user.nome} onChange={handleChange} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-medium text-slate-700"/>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block text-left">Registro (RE)</label>
-                <input type="text" disabled value={user.re} className="w-full px-4 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-400 cursor-not-allowed font-mono"/>
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Registro (RE)</label>
+                <input type="text" disabled value={user.re} className="w-full px-4 py-3 bg-slate-100 border border-slate-200 rounded-xl text-sm text-slate-400 cursor-not-allowed font-mono font-bold"/>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block text-left">E-mail Institucional</label>
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">E-mail Institucional</label>
                 <input name="email" type="email" value={user.email} onChange={handleChange} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-medium text-slate-700"/>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block text-left">Telefone de Contato</label>
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Telefone de Contato</label>
                 <input name="telefone" type="text" value={user.telefone} onChange={handleChange} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-medium text-slate-700"/>
               </div>
             </div>
@@ -207,29 +205,32 @@ export default function PerfilPage() {
               <button 
                 type="submit"
                 disabled={isSaving}
-                className="flex items-center gap-2 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] text-white px-10 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/20 hover:scale-103 active:scale-95 transition disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer">
+                className="flex items-center gap-2 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] text-white px-10 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/20 hover:scale-[1.02] active:scale-95 transition disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer">
                 {isSaving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
                 {isSaving ? "Salvando..." : "Salvar Alterações"}
               </button>
             </div>
           </form>
 
-          <div className="bg-linear-to-br from-blue-600 to-blue-700 rounded-3xl p-6 text-white shadow-lg shadow-blue-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-start gap-4 grow">
+          {/* Card de Segurança */}
+          <div className="bg-linear-to-br from-slate-800 to-slate-950 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative group">
+            <div className="flex items-start gap-4 grow z-10">
                <div className="bg-white/10 p-3 rounded-2xl"><Lock size={20} /></div>
                <div>
-                  <h3 className="text-sm font-bold mb-1 tracking-tight text-left">Segurança e Autenticação</h3>
-                  <p className="text-[11px] text-blue-100 font-light leading-relaxed max-w-sm italic text-left">
-                    Última alteração de senha: <b>22/02/2026</b>. Mantenha seus dados seguros.
+                  <h3 className="text-sm font-bold mb-1 tracking-tight">Segurança e Autenticação</h3>
+                  <p className="text-[11px] text-slate-400 font-light leading-relaxed max-w-sm italic">
+                    Última alteração de senha: <b className="text-white">22/02/2026</b>. Mantenha seus dados sempre protegidos.
                   </p>
                </div>
             </div>
             <button 
               onClick={() => alert("Função para abrir modal de troca de senha")}
-              className="w-full md:w-auto py-3 px-8 bg-white text-blue-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 transition-all shadow-xl shadow-black/10 cursor-pointer"
+              className="w-full md:w-auto py-3 px-8 bg-white text-slate-900 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 transition-all shadow-xl cursor-pointer z-10"
             >
                Alterar Minha Senha
             </button>
+            {/* Efeito visual de fundo */}
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all"></div>
           </div>
         </div>
       </div>

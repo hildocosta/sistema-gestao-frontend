@@ -1,8 +1,9 @@
 "use client";
-import { FileText, AlertTriangle, Clock, TrendingUp, ChevronRight } from "lucide-react";
+import { FileText, AlertTriangle, Clock, TrendingUp } from "lucide-react";
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell 
 } from 'recharts';
+import Breadcrumb from "../../components/Breadcrumb";
 
 // Dados baseados na sua planilha para o gráfico
 const dadosGrafico = [
@@ -15,15 +16,10 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
       
-      {/* --- CABEÇALHO COM BREADCRUMB PADRONIZADO --- */}
+      {/* --- CABEÇALHO --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <nav className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-full mb-3 shadow-sm shadow-slate-200/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-[9px] text-blue-600 font-black uppercase tracking-[0.15em]">Dashboard</span>
-            <ChevronRight size={10} className="text-slate-300 mx-0.5" />
-            <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em]">Visão Geral</span>
-          </nav>
+          <Breadcrumb itemAtual="Dashboard" />
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">
             Painel de Controle Operacional
           </h1>

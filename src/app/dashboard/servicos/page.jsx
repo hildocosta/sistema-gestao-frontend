@@ -3,8 +3,8 @@ import { useState } from "react";
 import { 
   Calendar, AlertTriangle, CheckCircle2, Clock, Search, 
   Plus, Filter, FileText, X, ArrowRight, AlertCircle, Settings,
-  ChevronRight
-} from "lucide-react";
+  } from "lucide-react";
+import Breadcrumb from "../../../components/Breadcrumb";
 
 const servicosPlanilha = [
   { id: "01", servico: "Limpeza de Caixa D'Água", periodicidade: "12 meses", ultima: "07/11/2024", proxima: "07/11/2025", status: "Atrasada" },
@@ -92,15 +92,12 @@ export default function ServicosPage() {
         </div>
       )}
 
-      {/* --- CABEÇALHO (COM BREADCRUMB OPÇÃO 1) --- */}
+      {/* --- CABEÇALHO --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <nav className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-full mb-3 shadow-sm shadow-slate-200/10">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-[9px] text-slate-400 font-black uppercase tracking-[0.15em]">Dashboard</span>
-            <ChevronRight size={10} className="text-slate-300 mx-0.5" />
-            <span className="text-[9px] text-blue-600 font-black uppercase tracking-[0.15em]">Manutenção</span>
-          </nav>
+
+          <Breadcrumb itemAtual="Manutenção" />
+
           <h1 className="text-xl font-bold text-slate-800 tracking-tight">Controle de Serviços - 17º BPM</h1>
         </div>
 
