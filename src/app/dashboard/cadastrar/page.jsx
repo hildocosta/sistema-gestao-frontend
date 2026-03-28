@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   UserPlus, 
   Shield, 
@@ -9,11 +9,21 @@ import {
 } from "lucide-react";
 import Breadcrumb from "../../../components/Breadcrumb";
 import ActionButton from "../../../components/ActionButton";
+import Skeleton from "../../../components/Skeleton";
 
 export default function CadastrarPage() {
   const [abaAtiva, setAbaAtiva] = useState("militar");
   const [formEnviado, setFormEnviado] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulação de carregamento inicial da página
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,94 +90,119 @@ export default function CadastrarPage() {
         
         <form onSubmit={handleSubmit} className="p-10">
           
-          {abaAtiva === "militar" ? (
-            <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          {isLoading ? (
+            /* SKELETON DO FORMULÁRIO */
+            <div className="space-y-10">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl border border-blue-100"><Shield size={20} strokeWidth={2.5} /></div>
-                <div>
-                  <h2 className="text-sm font-black text-slate-800 uppercase tracking-widest leading-none">Dados do Efetivo</h2>
-                  <p className="text-[10px] text-slate-400 uppercase font-bold tracking-tight mt-1 italic">Vínculo Direto com a SJD</p>
+                <Skeleton className="w-12 h-12 rounded-2xl" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-3 w-48" />
                 </div>
               </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-end">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Nome Completo</label>
-                  <input required type="text" placeholder="Ex: Anderson Silva" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-medium text-slate-700 shadow-xs"/>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">RE (Registro Estadual)</label>
-                  <input required type="text" placeholder="000.000-0" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-mono font-bold text-slate-600 shadow-xs"/>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Posto/Graduação</label>
-                  <select className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-bold text-slate-600 cursor-pointer shadow-xs">
-                    <option>Soldado</option>
-                    <option>Cabo</option>
-                    <option>3º Sargento</option>
-                    <option>2º Sargento</option>
-                    <option>1º Sargento</option>
-                    <option>Subtenente</option>
-                    <option>Oficial</option>
-                  </select>
-                </div>
-                <div className="space-y-2 lg:col-span-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">E-mail Institucional (@pm.pr.gov.br)</label>
-                  <input required type="email" placeholder="militar@pm.pr.gov.br" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-medium text-slate-700 shadow-xs"/>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Nível de Acesso</label>
-                  <select className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-black text-blue-600 cursor-pointer shadow-xs">
-                    <option>Operador (Padrão)</option>
-                    <option>Gestor de Logística</option>
-                    <option>Administrador</option>
-                  </select>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <Skeleton className="h-16 w-full rounded-2xl" />
+                <Skeleton className="h-16 w-full rounded-2xl" />
+                <Skeleton className="h-16 w-full rounded-2xl" />
+                <Skeleton className="h-16 w-full rounded-2xl lg:col-span-2" />
+                <Skeleton className="h-16 w-full rounded-2xl" />
               </div>
             </div>
           ) : (
-            <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl border border-amber-100"><ClipboardCheck size={20} strokeWidth={2.5} /></div>
-                <div>
-                  <h2 className="text-sm font-black text-slate-800 uppercase tracking-widest leading-none">Novo Item de Manutenção</h2>
-                  <p className="text-[10px] text-amber-600 uppercase font-bold tracking-tight mt-1 italic">Sincronização Automática com Planilha Master</p>
+            /* FORMULÁRIO REAL */
+            abaAtiva === "militar" ? (
+              <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl border border-blue-100"><Shield size={20} strokeWidth={2.5} /></div>
+                  <div>
+                    <h2 className="text-sm font-black text-slate-800 uppercase tracking-widest leading-none">Dados do Efetivo</h2>
+                    <p className="text-[10px] text-slate-400 uppercase font-bold tracking-tight mt-1 italic">Vínculo Direto com a SJD</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-end">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Nome Completo</label>
+                    <input required type="text" placeholder="Ex: Anderson Silva" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-medium text-slate-700 shadow-xs"/>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">RE (Registro Estadual)</label>
+                    <input required type="text" placeholder="000.000-0" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-mono font-bold text-slate-600 shadow-xs"/>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Posto/Graduação</label>
+                    <select className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-bold text-slate-600 cursor-pointer shadow-xs">
+                      <option>Soldado</option>
+                      <option>Cabo</option>
+                      <option>3º Sargento</option>
+                      <option>2º Sargento</option>
+                      <option>1º Sargento</option>
+                      <option>Subtenente</option>
+                      <option>Oficial</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2 lg:col-span-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">E-mail Institucional (@pm.pr.gov.br)</label>
+                    <input required type="email" placeholder="militar@pm.pr.gov.br" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-medium text-slate-700 shadow-xs"/>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Nível de Acesso</label>
+                    <select className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-black text-blue-600 cursor-pointer shadow-xs">
+                      <option>Operador (Padrão)</option>
+                      <option>Gestor de Logística</option>
+                      <option>Administrador</option>
+                    </select>
+                  </div>
                 </div>
               </div>
+            ) : (
+              <div className="space-y-10 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl border border-amber-100"><ClipboardCheck size={20} strokeWidth={2.5} /></div>
+                  <div>
+                    <h2 className="text-sm font-black text-slate-800 uppercase tracking-widest leading-none">Novo Item de Manutenção</h2>
+                    <p className="text-[10px] text-amber-600 uppercase font-bold tracking-tight mt-1 italic">Sincronização Automática com Planilha Master</p>
+                  </div>
+                </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Descrição do Serviço</label>
-                  <input required type="text" placeholder="Ex: Manutenção Preventiva Freezer" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-bold text-slate-700 shadow-xs"/>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Periodicidade</label>
-                  <select className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-black text-slate-600 cursor-pointer shadow-xs">
-                    <option>Mensal</option>
-                    <option>Trimestral</option>
-                    <option>Semestral</option>
-                    <option>Anual</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Data da Última Execução</label>
-                  <input type="date" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all text-slate-500 font-bold shadow-xs cursor-pointer"/>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Vínculo OPM / Setor</label>
-                  <input type="text" placeholder="Ex: Rancho / Estante de Tiro" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-medium text-slate-600 shadow-xs"/>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Descrição do Serviço</label>
+                    <input required type="text" placeholder="Ex: Manutenção Preventiva Freezer" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-bold text-slate-700 shadow-xs"/>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Periodicidade</label>
+                    <select className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-black text-slate-600 cursor-pointer shadow-xs">
+                      <option>Mensal</option>
+                      <option>Trimestral</option>
+                      <option>Semestral</option>
+                      <option>Anual</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Data da Última Execução</label>
+                    <input type="date" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all text-slate-500 font-bold shadow-xs cursor-pointer"/>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest ml-1 block">Vínculo OPM / Setor</label>
+                    <input type="text" placeholder="Ex: Rancho / Estante de Tiro" className="w-full h-13.5 px-5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-300 outline-none transition-all font-medium text-slate-600 shadow-xs"/>
+                  </div>
                 </div>
               </div>
-            </div>
+            )
           )}
 
           {/* RODAPÉ COM ACTIONBUTTON */}
           <div className="mt-16 pt-8 border-t border-slate-50 flex justify-end">
-            <ActionButton 
-              type="submit"
-              disabled={isSaving}
-              label={isSaving ? "Processando..." : `Concluir Registro de ${abaAtiva === "militar" ? "Militar" : "Serviço"}`}
-            />
+            {isLoading ? (
+              <Skeleton className="h-14 w-64 rounded-2xl" />
+            ) : (
+              <ActionButton 
+                type="submit"
+                disabled={isSaving}
+                label={isSaving ? "Processando..." : `Concluir Registro de ${abaAtiva === "militar" ? "Militar" : "Serviço"}`}
+              />
+            )}
           </div>
         </form>
       </div>

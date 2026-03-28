@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Calendar, AlertTriangle, CheckCircle2, Clock, 
   Plus, ArrowRight, Settings
@@ -14,6 +14,8 @@ import StatusBadge from "../../../components/StatusBadge";
 import FormInput from "../../../components/FormInput";
 import FormSelect from "../../../components/FormSelect";
 import StatCard from "../../../components/StatCard";
+import TableSkeleton from "../../../components/TableSkeleton";
+import Skeleton from "../../../components/Skeleton";
 
 const servicosPlanilha = [
   { id: "01", servico: "Limpeza de Caixa D'Água", periodicidade: "12 meses", ultima: "07/11/2024", proxima: "07/11/2025", status: "Atrasada" },
@@ -29,6 +31,15 @@ const servicosPlanilha = [
 export default function ServicosPage() {
   const [busca, setBusca] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulação de carregamento de dados
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); // 1.5 segundos para demonstrar o skeleton
+    return () => clearTimeout(timer);
+  }, []);
 
   const colunas = [
     { label: "Serviço / Item", align: "left" },
@@ -55,48 +66,64 @@ export default function ServicosPage() {
         />
       </div>
 
-      {/* --- CARDS DE INDICADORES (Usando StatCard) --- */}
+      {/* --- CARDS DE INDICADORES --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard label="Atrasados" value="02" icon={AlertTriangle} color="red" />
-        <StatCard label="Em Alerta" value="11" icon={Clock} color="amber" />
-        <StatCard label="Em Dia" value="03" icon={CheckCircle2} color="emerald" />
+        {isLoading ? (
+          <>
+            <Skeleton className="h-32 w-full rounded-2xl" />
+            <Skeleton className="h-32 w-full rounded-2xl" />
+            <Skeleton className="h-32 w-full rounded-2xl" />
+          </>
+        ) : (
+          <>
+            <StatCard label="Atrasados" value="02" icon={AlertTriangle} color="red" />
+            <StatCard label="Em Alerta" value="11" icon={Clock} color="amber" />
+            <StatCard label="Em Dia" value="03" icon={CheckCircle2} color="emerald" />
+          </>
+        )}
       </div>
 
       {/* --- TABELA DE SERVIÇOS --- */}
-      <DataTable 
-        columns={colunas}
-        data={servicosPlanilha}
-        searchValue={busca}
-        onSearchChange={(e) => setBusca(e.target.value)}
-        searchPlaceholder="Pesquisar serviço..."
-        renderRow={(item) => (
-          <tr key={item.id} className="hover:bg-slate-50/80 transition-all group cursor-pointer">
-            <td className="px-6 py-4">
-              <div className="flex flex-col">
-                <span className="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">{item.servico}</span>
-                <span className="text-[10px] text-slate-400 uppercase font-medium">Ref: #{item.id}</span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-  <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold border transition-colors ${
-    item.periodicidade.includes("12") 
-      ? "bg-slate-100 text-slate-600 border-slate-200" 
-      : item.periodicidade.includes("6")
-      ? "bg-blue-50 text-blue-600 border-blue-100"    
-      : "bg-purple-50 text-purple-600 border-purple-100" 
-  }`}>
-    <Calendar size={12} className="shrink-0 opacity-70" />
-    {item.periodicidade}
-  </span>
-</td>
-            <td className="px-6 py-4 text-xs text-slate-500 text-center font-medium">{item.ultima}</td>
-            <td className="px-6 py-4 text-xs text-slate-600 text-center font-bold">{item.proxima}</td>
-            <td className="px-6 py-4 text-center">
-              <StatusBadge status={item.status} />
-            </td>
-          </tr>
-        )}
-      />
+      {isLoading ? (
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <TableSkeleton rows={8} />
+        </div>
+      ) : (
+        <DataTable 
+          columns={colunas}
+          data={servicosPlanilha}
+          searchValue={busca}
+          onSearchChange={(e) => setBusca(e.target.value)}
+          searchPlaceholder="Pesquisar serviço..."
+          renderRow={(item) => (
+            <tr key={item.id} className="hover:bg-slate-50/80 transition-all group cursor-pointer">
+              <td className="px-6 py-4">
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">{item.servico}</span>
+                  <span className="text-[10px] text-slate-400 uppercase font-medium">Ref: #{item.id}</span>
+                </div>
+              </td>
+              <td className="px-6 py-4">
+                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold border transition-colors ${
+                  item.periodicidade.includes("12") 
+                    ? "bg-slate-100 text-slate-600 border-slate-200" 
+                    : item.periodicidade.includes("6")
+                    ? "bg-blue-50 text-blue-600 border-blue-100"    
+                    : "bg-purple-50 text-purple-600 border-purple-100" 
+                }`}>
+                  <Calendar size={12} className="shrink-0 opacity-70" />
+                  {item.periodicidade}
+                </span>
+              </td>
+              <td className="px-6 py-4 text-xs text-slate-500 text-center font-medium">{item.ultima}</td>
+              <td className="px-6 py-4 text-xs text-slate-600 text-center font-bold">{item.proxima}</td>
+              <td className="px-6 py-4 text-center">
+                <StatusBadge status={item.status} />
+              </td>
+            </tr>
+          )}
+        />
+      )}
 
       {/* --- MODAL DE CADASTRO --- */}
       <Modal

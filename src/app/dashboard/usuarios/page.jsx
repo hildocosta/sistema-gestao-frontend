@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   UserPlus, ShieldCheck, ShieldAlert, 
-  Mail, Shield 
+  Mail, Shield, Loader2, Save 
 } from "lucide-react";
 
 // Importação dos Componentes Reutilizáveis
@@ -16,6 +16,7 @@ import PermissionBadge from "../../../components/PermissionBadge";
 import FormInput from "../../../components/FormInput";
 import FormSelect from "../../../components/FormSelect";
 import TableActions from "../../../components/TableActions";
+import Skeleton from "../../../components/Skeleton";
 
 const usuariosIniciais = [
   { id: 1, nome: "Anderson Silva", posto: "1º Sargento", re: "123.456-7", email: "sargento.silva@pm.pr.gov.br", nivel: "Admin", status: "Ativo" },
@@ -27,10 +28,17 @@ const usuariosIniciais = [
 export default function UsuariosPage() {
   const [usuarios, setUsuarios] = useState(usuariosIniciais);
   const [busca, setBusca] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [novoMilitar, setNovoMilitar] = useState({
     nome: "", posto: "Soldado", re: "", email: "", nivel: "Operador", status: "Ativo"
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const colunas = [
     { label: "Militar / RE", align: "left" },
@@ -42,10 +50,15 @@ export default function UsuariosPage() {
 
   const handleCadastrar = (e) => {
     e.preventDefault();
-    const id = usuarios.length + 1;
-    setUsuarios([...usuarios, { id, ...novoMilitar }]);
-    setIsModalOpen(false);
-    setNovoMilitar({ nome: "", posto: "Soldado", re: "", email: "", nivel: "Operador", status: "Ativo" });
+    setIsSaving(true);
+    
+    setTimeout(() => {
+      const id = usuarios.length + 1;
+      setUsuarios([...usuarios, { id, ...novoMilitar }]);
+      setIsSaving(false);
+      setIsModalOpen(false);
+      setNovoMilitar({ nome: "", posto: "Soldado", re: "", email: "", nivel: "Operador", status: "Ativo" });
+    }, 1500);
   };
 
   return (
@@ -69,55 +82,73 @@ export default function UsuariosPage() {
 
       {/* --- CARDS DE RESUMO --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard label="Administradores" value="02" icon={ShieldCheck} color="blue" />
-        <StatCard label="Total Ativos" value={usuarios.length} icon={UserPlus} color="emerald" />
-        <StatCard label="Acessos Bloqueados" value="01" icon={ShieldAlert} color="red" />
+        {isLoading ? (
+          <>
+            <Skeleton className="h-32 rounded-3xl" />
+            <Skeleton className="h-32 rounded-3xl" />
+            <Skeleton className="h-32 rounded-3xl" />
+          </>
+        ) : (
+          <>
+            <StatCard label="Administradores" value="02" icon={ShieldCheck} color="blue" />
+            <StatCard label="Total Ativos" value={usuarios.length} icon={UserPlus} color="emerald" />
+            <StatCard label="Acessos Bloqueados" value="01" icon={ShieldAlert} color="red" />
+          </>
+        )}
       </div>
 
       {/* --- TABELA DE USUÁRIOS --- */}
-      <DataTable 
-        columns={colunas}
-        data={usuarios}
-        searchPlaceholder="Buscar por nome, RE ou posto..."
-        searchValue={busca}
-        onSearchChange={(e) => setBusca(e.target.value)}
-        renderRow={(u) => (
-          <tr key={u.id} className="hover:bg-slate-50/50 transition">
-            <td className="px-8 py-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-500 uppercase">
-                  {u.nome.charAt(0)}
+      {isLoading ? (
+        <div className="bg-white rounded-3xl border border-slate-100 p-8 space-y-4">
+          <Skeleton className="h-10 w-64 rounded-xl" />
+          <div className="space-y-2">
+            {[1, 2, 3, 4].map(i => <Skeleton key={i} className="h-16 w-full rounded-2xl" />)}
+          </div>
+        </div>
+      ) : (
+        <DataTable 
+          columns={colunas}
+          data={usuarios}
+          searchPlaceholder="Buscar por nome, RE ou posto..."
+          searchValue={busca}
+          onSearchChange={(e) => setBusca(e.target.value)}
+          renderRow={(u) => (
+            <tr key={u.id} className="hover:bg-slate-50/50 transition group">
+              <td className="px-8 py-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-500 uppercase">
+                    {u.nome.charAt(0)}
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <span className="text-sm font-bold text-slate-700">{u.posto} {u.nome}</span>
+                    <span className="text-[10px] text-blue-500 font-mono font-bold tracking-tighter">RE {u.re}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-sm font-bold text-slate-700">{u.posto} {u.nome}</span>
-                  <span className="text-[10px] text-blue-500 font-mono font-bold tracking-tighter">RE {u.re}</span>
+              </td>
+              <td className="px-8 py-4">
+                <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                  <Mail size={12} className="text-slate-300" /> {u.email}
                 </div>
-              </div>
-            </td>
-            <td className="px-8 py-4">
-              <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                <Mail size={12} className="text-slate-300" /> {u.email}
-              </div>
-            </td>
-            <td className="px-8 py-4 text-center">
-              <PermissionBadge level={u.nivel} />
-            </td>
-            <td className="px-8 py-4 text-center">
-              <StatusBadge status={u.status} />
-            </td>
-            <td className="px-8 py-4 text-right">
-              {/* Exibição normal (sempre visível) */}
-              <div className="flex justify-end">
-                <TableActions 
-                  showView={false} 
-                  onEdit={() => console.log("Editar usuário:", u.id)}
-                  onDelete={() => console.log("Deletar usuário:", u.id)}
-                />
-              </div>
-            </td>
-          </tr>
-        )}
-      />
+              </td>
+              <td className="px-8 py-4 text-center">
+                <PermissionBadge level={u.nivel} />
+              </td>
+              <td className="px-8 py-4 text-center">
+                <StatusBadge status={u.status} />
+              </td>
+              <td className="px-8 py-4 text-right">
+                <div className="flex justify-end">
+                  <TableActions 
+                    showView={false} 
+                    onEdit={() => console.log("Editar usuário:", u.id)}
+                    onDelete={() => console.log("Deletar usuário:", u.id)}
+                  />
+                </div>
+              </td>
+            </tr>
+          )}
+        />
+      )}
 
       {/* --- MODAL DE CADASTRO --- */}
       <Modal 
@@ -186,20 +217,21 @@ export default function UsuariosPage() {
             </div>
           </div>
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-4 pt-2">
             <button 
               type="button" 
               onClick={() => setIsModalOpen(false)}
-              className="flex-1 py-3.5 rounded-2xl text-xs font-bold text-slate-500 hover:bg-slate-50 transition cursor-pointer"
+              className="flex-1 py-4 border border-slate-100 text-slate-400 rounded-2xl text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-slate-50 transition"
             >
               Cancelar
             </button>
-            <button 
+            <ActionButton 
               type="submit"
-              className="flex-1 py-3.5 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] text-white rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/25 hover:scale-103 transition cursor-pointer active:scale-95"
-            >
-              Confirmar Cadastro
-            </button>
+              disabled={isSaving}
+              icon={isSaving ? Loader2 : Save}
+              label={isSaving ? "Gravando..." : "Confirmar Cadastro"}
+              className={`flex-[1.5] h-14! ${isSaving ? "animate-pulse" : ""}`}
+            />
           </div>
         </form>
       </Modal>

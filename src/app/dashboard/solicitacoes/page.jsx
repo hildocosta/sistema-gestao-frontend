@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { Plus, AlertCircle, Save } from "lucide-react"; 
+import { useState, useEffect } from "react";
+import { Plus, AlertCircle, Save, Loader2 } from "lucide-react"; 
 
 // Importação dos Componentes Reutilizáveis
 import Breadcrumb from "../../../components/Breadcrumb";
@@ -11,6 +11,7 @@ import StatusBadge from "../../../components/StatusBadge";
 import FormInput from "../../../components/FormInput";
 import FormSelect from "../../../components/FormSelect";
 import TableActions from "../../../components/TableActions"; 
+import Skeleton from "../../../components/Skeleton";
 
 const solicitacoesBaseadasNaPlanilha = [
   { id: "001", titulo: "Limpeza de Caixa D'Água (Urgente)", solicitante: "Sgt. Responsável - Logística", status: "Pendente", data: "22/03/2026", vinculo: "Serviço ID #01" },
@@ -20,6 +21,8 @@ const solicitacoesBaseadasNaPlanilha = [
 ];
 
 export default function SolicitacoesPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [busca, setBusca] = useState("");
   const [formData, setFormData] = useState({ 
@@ -27,6 +30,12 @@ export default function SolicitacoesPage() {
     solicitante: "", 
     servicoVinculado: "Limpeza de Caixa D'Água (ID #01)" 
   });
+
+  // Simulação de carregamento sincronizado
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const colunas = [
     { label: "ID", align: "left" },
@@ -37,8 +46,13 @@ export default function SolicitacoesPage() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    setIsModalOpen(false);
-    setFormData({ titulo: "", solicitante: "", servicoVinculado: "Limpeza de Caixa D'Água (ID #01)" });
+    setIsSaving(true);
+    
+    setTimeout(() => {
+      setIsSaving(false);
+      setIsModalOpen(false);
+      setFormData({ titulo: "", solicitante: "", servicoVinculado: "Limpeza de Caixa D'Água (ID #01)" });
+    }, 1500);
   };
 
   return (
@@ -62,47 +76,60 @@ export default function SolicitacoesPage() {
 
       {/* --- TABELA DE SOLICITAÇÕES --- */}
       <div className="relative">
-        <div className="absolute right-20 top-7 z-10 hidden md:flex items-center gap-3 px-4 py-2 bg-blue-50/50 rounded-lg border border-blue-100/50 text-[10px] font-black text-blue-600 uppercase tracking-widest">
-          <AlertCircle size={14} className="animate-pulse" />
-          Sincronizado com Planilha Master
-        </div>
+        {!isLoading && (
+          <div className="absolute right-20 top-7 z-10 hidden md:flex items-center gap-3 px-4 py-2 bg-blue-50/50 rounded-lg border border-blue-100/50 text-[10px] font-black text-blue-600 uppercase tracking-widest">
+            <AlertCircle size={14} className="animate-pulse" />
+            Sincronizado com Planilha Master
+          </div>
+        )}
 
-        <DataTable 
-          columns={colunas}
-          data={solicitacoesBaseadasNaPlanilha}
-          searchPlaceholder="Buscar chamado por ID ou título..."
-          searchValue={busca}
-          onSearchChange={(e) => setBusca(e.target.value)}
-          renderRow={(item) => (
-            <tr key={item.id} className="hover:bg-slate-50/50 transition-all group">
-              <td className="px-8 py-6 text-xs font-black text-slate-300">#{item.id}</td>
-              <td className="px-8 py-6">
-                <div className="flex flex-col gap-1 text-left">
-                  <span className="text-sm font-bold text-slate-700 leading-none">{item.titulo}</span>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-[10px] text-blue-500 font-black uppercase tracking-tighter">{item.vinculo}</span>
-                    <span className="text-slate-200 text-[10px]">|</span>
-                    <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{item.solicitante}</span>
+        {isLoading ? (
+          <div className="bg-white rounded-3xl border border-slate-100 p-8 space-y-4">
+            <Skeleton className="h-10 w-64 rounded-xl" />
+            <div className="space-y-2">
+              <Skeleton className="h-16 w-full rounded-2xl" />
+              <Skeleton className="h-16 w-full rounded-2xl" />
+              <Skeleton className="h-16 w-full rounded-2xl" />
+              <Skeleton className="h-16 w-full rounded-2xl" />
+            </div>
+          </div>
+        ) : (
+          <DataTable 
+            columns={colunas}
+            data={solicitacoesBaseadasNaPlanilha}
+            searchPlaceholder="Buscar chamado por ID ou título..."
+            searchValue={busca}
+            onSearchChange={(e) => setBusca(e.target.value)}
+            renderRow={(item) => (
+              <tr key={item.id} className="hover:bg-slate-50/50 transition-all group">
+                <td className="px-8 py-6 text-xs font-black text-slate-300">#{item.id}</td>
+                <td className="px-8 py-6">
+                  <div className="flex flex-col gap-1 text-left">
+                    <span className="text-sm font-bold text-slate-700 leading-none">{item.titulo}</span>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-[10px] text-blue-500 font-black uppercase tracking-tighter">{item.vinculo}</span>
+                      <span className="text-slate-200 text-[10px]">|</span>
+                      <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{item.solicitante}</span>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="px-8 py-6 text-center">
-                <StatusBadge status={item.status} />
-              </td>
-              <td className="px-8 py-6 text-center">
-                {/* --- COMPONENTE DE AÇÕES APLICADO --- */}
-                <TableActions 
-                  onEdit={() => console.log("Editar", item.id)}
-                  onDelete={() => console.log("Excluir", item.id)}
-                  onView={() => console.log("Ver", item.id)}
-                />
-              </td>
-            </tr>
-          )}
-        />
+                </td>
+                <td className="px-8 py-6 text-center">
+                  <StatusBadge status={item.status} />
+                </td>
+                <td className="px-8 py-6 text-center">
+                  <TableActions 
+                    onEdit={() => console.log("Editar", item.id)}
+                    onDelete={() => console.log("Excluir", item.id)}
+                    onView={() => console.log("Ver", item.id)}
+                  />
+                </td>
+              </tr>
+            )}
+          />
+        )}
       </div>
 
-      {/* --- MODAL (Mantido igual) --- */}
+      {/* --- MODAL --- */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -138,16 +165,17 @@ export default function SolicitacoesPage() {
             <button 
               type="button" 
               onClick={() => setIsModalOpen(false)} 
-              className="flex-1 py-4 border border-slate-100 text-slate-400 rounded-2xl text-[11px] font-black uppercase tracking-widest cursor-pointer hover:bg-slate-50 transition"
+              className="flex-1 py-4 border border-slate-100 text-slate-400 rounded-2xl text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-slate-50 transition"
             >
               Cancelar
             </button>
-            <button 
+            <ActionButton 
               type="submit" 
-              className="flex-[1.5] py-4 bg-linear-to-tr from-[#1a73e8] to-[#63a4ff] text-white rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <Save size={16} strokeWidth={3} /> Abrir Ordem de Serviço
-            </button>
+              disabled={isSaving}
+              icon={isSaving ? Loader2 : Save}
+              label={isSaving ? "Gravando..." : "Abrir Ordem de Serviço"}
+              className={`flex-[1.5] h-14! ${isSaving ? "animate-pulse" : ""}`}
+            />
           </div>
         </form>
       </Modal>
