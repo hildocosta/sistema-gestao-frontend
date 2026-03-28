@@ -8,66 +8,54 @@
 </p>
 
 <p align="center">
-  <strong>Plataforma inteligente para otimização de fluxos administrativos e controle operacional.</strong>
+  <strong>Plataforma inteligente para otimização de fluxos administrativos e controle operacional do 17º Batalhão de Polícia Militar.</strong>
 </p>
 
 ---
 
 ## 📖 Sobre o Projeto: De Planilhas para Performance Digital
 
-O **Sistema de Gestão Interna - 17º BPM** nasceu de uma necessidade clara: modernizar e centralizar o controle de processos que, até então, dependiam de fluxos manuais e planilhas descentralizadas. O objetivo principal é converter a complexidade operacional em uma plataforma digital de alta performance, garantindo organização de dados, agilidade na consulta de informações e uma interface intuitiva para o militar.
+O **Sistema de Gestão Interna - 17º BPM** nasceu da necessidade de modernizar e centralizar processos que dependiam de fluxos manuais e planilhas descentralizadas. O objetivo é converter a complexidade operacional em uma plataforma digital de alta performance, garantindo integridade de dados, agilidade na consulta e uma interface intuitiva para o militar.
 
-Construído com **Next.js 15** e **React 19**, o sistema entrega uma experiência veloz, segura e preparada para escala.
+### 🔄 A Grande Transformação: O Foco na Central de Serviços
+O projeto resolve o gargalo da gestão via Google Sheets, eliminando a falta de alertas visuais e o risco de inconsistência. A solução digital entrega:
+* **Indicadores Visuais (KPIs):** Status instantâneo de serviços (Atrasados, Alerta, Em Dia).
+* **Automação de Prazos:** Cálculo automático da próxima execução baseado na periodicidade.
+* **Busca Dinâmica:** Filtros avançados para localização imediata de itens e manutenções.
 
 ---
 
-### 🔄 A Grande Transformação: O Foco na Central de Serviços
+## 🏗️ Arquitetura de Software e Componentização
 
-O maior desafio e foco inicial do projeto foi a **Central de Serviços e Manutenções**. Anteriormente gerida através de uma planilha no Google Sheets (veja abaixo), a gestão sofria com a falta de alertas visuais, dificuldade na busca e risco de dados inconsistentes.
+O sistema adota uma metodologia **Frontend-First** e evoluiu de telas monolíticas para uma robusta **Arquitetura de Componentes Reutilizáveis**. Isso garante escalabilidade e consistência visual rigorosa (Design System).
 
-#### **O "Antes": Gestão Baseada em Google Sheets**
-<p align="center">
-  <img src="./screenshots/tabela controle de servicos - planilha.png" width="90%" style="border-radius: 8px; border: 1px solid #eaecef;" alt="Planilha Google Sheets Anterior" />
-  <br>
-  <em>A planilha original: dados descentralizados, sem automação e com visualização complexa.</em>
-</p>
+### 🧩 Biblioteca de Componentes Customizados
+* **Estrutura de Dados:** `DataTable.jsx`, `TableActions.jsx`, `SearchInput.jsx`.
+* **Formulários (Altura 54px):** `FormInput.jsx`, `FormSelect.jsx`, `Input.jsx`.
+* **Feedback & Status:** `StatCard.jsx`, `StatusBadge.jsx`, `PermissionBadge.jsx`.
+* **Navegação & Layout:** `Sidebar.jsx`, `Breadcrumb.jsx`, `Footer.jsx`, `Card.jsx`.
+* **Interação:** `Modal.jsx` (Janelas flutuantes unificadas), `ActionButton.jsx`.
 
-#### **O "Depois": O Novo Sistema Digital**
-Nossa solução transformou essa planilha em um **Painel de Controle Inteligente** (visível na seção "Visual Preview"), onde as mesmas informações agora possuem:
-
-* **Indicadores Visuais (KPIs):** Contagem instantânea de serviços 'Atrasados', 'Em Alerta' e 'Em Dia'.
-* **Busca e Filtros Dinâmicos:** Encontre qualquer manutenção ou item em segundos.
-* **Lógica de Cálculo Automático:** O sistema prevê a próxima data de execução baseada na periodicidade e última execução.
-* **UX Otimizada:** Modais de cadastro rápido e interface limpa para focar no que importa.
+---
 
 ## 📸 Demonstração da Interface (Visual Preview)
 
-<p align="center">
-  Abaixo, apresentamos os fluxos principais já implementados. Toda a interface utiliza **dados simulados (Mock Data)** para validar a usabilidade antes da integração com o banco de dados.
-</p>
+Abaixo, os fluxos principais implementados. A interface utiliza **Mock Data** para validação de UX antes da integração com o banco de dados.
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/🔐-Login-blue?style=flat&logoColor=white" alt="Login Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Autenticação segura para militares do 17º BPM.
-        </p>
-        <img src="./screenshots/login.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Login" />
+        <p align="center"><img src="https://img.shields.io/badge/🔐-Login-blue?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Autenticação segura para militares cadastrados.</p>
+        <img src="./screenshots/login.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/📊-Dashboard-orange?style=flat&logoColor=white" alt="Dashboard Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Visão geral com indicadores de manutenção.
-        </p>
-        <img src="./screenshots/dashboard.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Dashboard Geral" />
+        <p align="center"><img src="https://img.shields.io/badge/📝-Criar_Conta-darkblue?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Interface de auto-cadastro para novos operadores.</p>
+        <img src="./screenshots/tela de cadastro de usuario.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
   </tr>
@@ -75,24 +63,16 @@ Nossa solução transformou essa planilha em um **Painel de Controle Inteligente
   <tr>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/👤-Novo_Usuário-emerald?style=flat&logoColor=white" alt="User Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Fluxo de registro de militares e níveis de acesso.
-        </p>
-        <img src="./screenshots/cadastrar_usuario.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Cadastro de Usuário" />
+        <p align="center"><img src="https://img.shields.io/badge/🔑-Esqueceu_Senha-orange?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Solicitação de recuperação via e-mail institucional.</p>
+        <img src="./screenshots/esquece_senha.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/⚙️-Novo_Serviço-amber?style=flat&logoColor=white" alt="Service Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Gestão de manutenções preventivas e periódicas.
-        </p>
-        <img src="./screenshots/cadastrar_servico.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Cadastro de Serviço" />
+        <p align="center"><img src="https://img.shields.io/badge/📧-Link_Enviado-green?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Feedback visual de confirmação e orientações de spam.</p>
+        <img src="./screenshots/tela de link enviado para senha.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
   </tr>
@@ -100,145 +80,115 @@ Nossa solução transformou essa planilha em um **Painel de Controle Inteligente
   <tr>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/📋-Painel_de_Controle-darkblue?style=flat&logoColor=white" alt="Control Panel Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Visualização consolidada de todas as manutenções e filtros.
-        </p>
-        <img src="./screenshots/servicos.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Controle de Serviços" />
+        <p align="center"><img src="https://img.shields.io/badge/📊-Dashboard-orange?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Visão geral com indicadores de manutenção (StatCards).</p>
+        <img src="./screenshots/dashboard.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/🛠️-Interface_de_Cadastro-blueviolet?style=flat&logoColor=white" alt="Modal Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Janela flutuante (Modal) para inserção rápida de novos itens.
-        </p>
-        <img src="./screenshots/modal_cadastrar_servico.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Modal Cadastrar Serviço" />
+        <p align="center"><img src="https://img.shields.io/badge/⚙️-Novo_Serviço-amber?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Gestão de manutenções preventivas e periódicas.</p>
+        <img src="./screenshots/cadastrar_servico.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
   </tr>
+
   <tr>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/📩-Solicitações-blue?style=flat&logoColor=white" alt="Requests Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Gerenciamento de chamados e ordens de serviço operacionais.
-        </p>
-        <img src="./screenshots/tela_solicitacoes.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Solicitações" />
+        <p align="center"><img src="https://img.shields.io/badge/📋-Controle-darkblue?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Listagem dinâmica utilizando o componente DataTable.</p>
+        <img src="./screenshots/servicos.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/⚡-Novo_Chamado-cyan?style=flat&logoColor=white" alt="Modal Call Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Modal de abertura rápida com vínculo direto à planilha master.
-        </p>
-        <img src="./screenshots/modal_abrir_chamado_tela_solicitacoes.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Modal de Novo Chamado" />
+        <p align="center"><img src="https://img.shields.io/badge/🛠️-Interface_Modal-blueviolet?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Componente Modal unificado para inserção de dados.</p>
+        <img src="./screenshots/modal_cadastrar_servico.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
   </tr>
+
   <tr>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/👥-Lista_de_Usuários-indigo?style=flat&logoColor=white" alt="Users List Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Visualização do efetivo cadastrado com indicadores de status e nível.
-        </p>
-        <img src="./screenshots/tela_usuario_total.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Listagem de Usuários" />
+        <p align="center"><img src="https://img.shields.io/badge/📩-Solicitações-blue?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Gerenciamento de chamados e ordens de serviço.</p>
+        <img src="./screenshots/tela_solicitacoes.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/👤-Novo_Militar-dodgerblue?style=flat&logoColor=white" alt="New User Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Interface modal para cadastro rápido de militares e definição de privilégios.
-        </p>
-        <img src="./screenshots/tela_modal_novo_usuario_tela_usuarios.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Modal de Cadastro de Usuário" />
+        <p align="center"><img src="https://img.shields.io/badge/⚡-Novo_Chamado-cyan?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Abertura rápida com vínculo à planilha mestre.</p>
+        <img src="./screenshots/modal_abrir_chamado_tela_solicitacoes.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
   </tr>
+
   <tr>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/📈-Central_de_Relatórios-blueviolet?style=flat&logoColor=white" alt="Reports Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Painel de relatórios com filtros de exportação de dados para PDF e Excel.
-        </p>
-        <img src="./screenshots/tela_relatorios.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Tela de Relatórios" />
+        <p align="center"><img src="https://img.shields.io/badge/👥-Efetivo-indigo?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Listagem de militares com PermissionBadges.</p>
+        <img src="./screenshots/tela_usuario_total.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
     <td width="50%" valign="top" style="padding: 10px;">
       <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <p align="center">
-          <img src="https://img.shields.io/badge/📄-Impressão_PDF-red?style=flat&logoColor=white" alt="PDF Icon" />
-        </p>
-        <p align="center" style="font-size: 11px; color: #586069; margin-top: 5px; margin-bottom: 15px; min-height: 25px;">
-          Visualização de documento timbrado pronto para impressão oficial e arquivamento PDF.
-        </p>
-        <img src="./screenshots/tela relatorio exportar pdf.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" alt="Visualização de Impressão PDF" />
+        <p align="center"><img src="https://img.shields.io/badge/👤-Novo_Militar-dodgerblue?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Interface para cadastro e definição de privilégios.</p>
+        <img src="./screenshots/tela_modal_novo_usuario_tela_usuarios.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center"><img src="https://img.shields.io/badge/📈-Relatórios-blueviolet?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Painel de exportação de dados para PDF e Excel.</p>
+        <img src="./screenshots/tela_relatorios.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
+      </div>
+    </td>
+    <td width="50%" valign="top" style="padding: 10px;">
+      <div align="center" style="border: 1px solid #eaecef; border-radius: 12px; padding: 20px; height: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <p align="center"><img src="https://img.shields.io/badge/📄-Impressão-red?style=flat" /></p>
+        <p align="center" style="font-size: 11px; color: #586069; margin-bottom: 15px; min-height: 25px;">Documento timbrado pronto para arquivo oficial.</p>
+        <img src="./screenshots/tela relatorio exportar pdf.png" width="100%" style="border-radius: 8px; border: 1px solid #f0f0f0;" />
       </div>
     </td>
   </tr>
 </table>
-
-## 🏗️ Estratégia de Desenvolvimento e Refatoração
-
-O projeto seguiu uma abordagem de **Evolução de Arquitetura**, dividida em duas fases principais:
-
-1. **Fase de Prototipagem de Alta Fidelidade:** Construção das telas completas para validação imediata de fluxos de UI/UX, garantindo que a regra de negócio do 17º BPM fosse atendida visualmente.
-2. **Fase de Componentização e Otimização:** Com as telas validadas, iniciamos um processo de "limpeza" de código, extraindo padrões repetitivos para uma biblioteca de componentes reutilizáveis. 
-
-Isso resultou em um código **DRY (Don't Repeat Yourself)**, facilitando manutenções futuras e garantindo consistência visual em todo o sistema.
-
-
-## 🧩 Arquitetura de Componentes Reutilizáveis
-
-Para garantir a escalabilidade, o sistema conta com uma biblioteca de componentes customizados que padronizam a interface:
-
-* **`DataTable.jsx`:** Abstração completa para listagens, com suporte a estados de busca e ações.
-* **`StatCard.jsx`:** Cards de indicadores com variantes de status (Atrasado, Alerta, Em Dia).
-* **`Modal.jsx`:** Componente flutuante unificado com animações `framer-motion` e lógica de fechamento padronizada.
-* **`FormInput.jsx` & `FormSelect.jsx`:** Inputs customizados com altura padrão de `54px` (`h-13.5`) e estilos de foco consistentes.
-* **`StatusBadge.jsx` & `PermissionBadge.jsx`:** Rótulos visuais para identificação rápida de níveis de acesso e estados de serviço.
-* **`ActionButton.jsx`:** Botão principal com suporte a estados de carregamento (`loading`) e ícones dinâmicos.
 
 ---
 
 ## 🚀 Status do Desenvolvimento
 
 ### ✅ Já Implementado
-* **Módulo de Acesso:** Telas de Login e Cadastro com validação de formulários.
-* **Navegação Inteligente:** Menu lateral dinâmico com reconhecimento de página ativa.
-* **Design System v2:** Padronização de componentes via Tailwind CSS (v4) com suporte a gradientes lineares.
-* **Gestão de Usuários & Serviços:** Interface unificada para cadastro de efetivo e itens de manutenção.
-* **Gestão de Efetivo e Acessos:** Painel administrativo para controle de militares cadastrados, níveis de privilégio e status operacional.
-* **Painel de Indicadores:** Visualização de métricas e estatísticas em tempo real (Dashboard).
-* **Central de Serviços:** Tabela dinâmica para gerenciamento de solicitações e prazos de manutenção.
-* **📄 Relatórios Gerenciais:** Exportação de dados consolidados em PDF e Excel para o 17º BPM.
-* **Central de Solicitações:** Tabela dinâmica para gerenciamento de chamados operacionais e ordens de serviço.
-* **UX Polida:** Feedback visual de sucesso (Toasts), transições de entrada e cursor interativo em toda a aplicação.
-* **Gestão de Sessão:** Fluxo de saída (Logout) com transições suaves.
-* **🚀 Refatoração de Arquitetura:** Migração de telas monolíticas para um sistema baseado em componentes modulares, reduzindo a duplicidade de código em mais de 40%.
+* **Refatoração de Arquitetura:** Migração completa para componentes reutilizáveis (DRY).
+* **Autenticação Restrita:** Tela de Login com validação de campos e proteção de rotas.
+* **Auto-cadastro Operacional:** Interface para novos militares realizarem o registro no sistema.
+* **Recuperação de Conta:** Fluxo inteligente de "Esqueceu Senha" com:
 
-### 📈 Roadmap (Próximas Etapas)
-1. **👥 Níveis de Permissão:** Lógica de controle de acesso baseada no perfil do usuário (Operador/Gestor/Adm).
-2. **🔗 Conexão de Banco de Dados:** Implementação da persistência real dos dados de manutenção.
+* Validação de e-mail institucional.
 
-## 🛠️ Stack Tecnológic
+* **Feedback Visual de Sucesso:** Tela intermediária confirmando o envio do link e orientações de segurança.
+* **Navegação:** Sidebar dinâmica com reconhecimento de rota ativa.
+* **Design System v2:** Padronização via Tailwind CSS v4 com altura de 54px em inputs.
+* **Gestão de Efetivo:** Controle de privilégios (Adm/Gestor/Operador) e status.
+* **Central de Relatórios:** Exportação para PDF timbrado e Excel.
+* **UX Polida:** Toasts de sucesso, transições suaves e cursor interativo.
+
+### 📈 Roadmap
+1. **🔗 Persistência:** Integração com banco de dados real.
+2. **🔔 Notificações:** Alertas via sistema para prazos vencidos.
+
+---
+
+## 🛠️ Stack Tecnológica
 
 | Ferramenta | Aplicação |
 | :--- | :--- |
@@ -246,20 +196,19 @@ Para garantir a escalabilidade, o sistema conta com uma biblioteca de componente
 | **React 19** | Componentização e Lógica de Interface |
 | **Tailwind CSS** | Estilização Modernas e Responsividade |
 | **Lucide React** | Biblioteca de Ícones |
-| **Git/GitHub** | Versionamento e Organização de Código |
 
 ---
 
 ## 👤 Desenvolvedor
 
-**Hildo Costa** *Software Developer*
+**Hildo Costa** - *Software Developer*
 
 <p align="left">
   <a href="https://www.linkedin.com/in/hildo-costa-b83812231/">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
   <a href="mailto:hyldo.costa@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
 </p>
 
@@ -268,14 +217,7 @@ Para garantir a escalabilidade, o sistema conta com uma biblioteca de componente
 ## ⚙️ Instalação Local
 
 ```bash
-# 1. Clone o repositório
 git clone [https://github.com/SEU_USUARIO/NOME_DO_REPO.git](https://github.com/SEU_USUARIO/NOME_DO_REPO.git)
-
-# 2. Acesse o diretório
 cd nome-do-projeto
-
-# 3. Instale as dependências
 npm install
-
-# 4. Inicie o projeto
 npm run dev
